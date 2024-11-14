@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Home from './pages/Home';
+import Layout from './components/layout/Layout';
+import ThemeSwitcher from './components/header/ThemeSwitcher';
+import { BookStoreThemeProvider } from './context/ThemeContext';
 
 function App() {
+  // const [themeName, setThemeName] = useState<ThemeName>('light'); // light, dart 둘 중에 하나만 들어갈 수 있도록
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BookStoreThemeProvider>
+      <ThemeSwitcher />
+      <Layout>
+        <Home />
+      </Layout>
+    </BookStoreThemeProvider>
   );
 }
 
 export default App;
+
+// <Layout children={<Home />} />
