@@ -1,14 +1,17 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import logo from '../../assets/logo.png'
-import { FaSignInAlt, FaRegUser } from 'react-icons/fa'
+import { FaSignInAlt, FaRegUser, FaSignOutAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useCategory } from '../../hook/useCategory'
+import { useAuthStore } from '../../store/authStore'
+import { useNavigate } from 'react-router-dom'
 
 
 const Header = () => {
 
   const { category } = useCategory();
+  const { isLoggedIn, storeLogout } = useAuthStore();
 
   return (
     <HeaderStyled>
@@ -31,18 +34,37 @@ const Header = () => {
         </ul>
       </nav>
       <nav className='auth'>
-          <ul>
-            <li>
-              <Link to="/login">
-                <FaSignInAlt />로그인
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup">
-                <FaRegUser />회원가입
-              </Link>
-            </li>
-          </ul>
+        {
+          isLoggedIn && (
+            <ul>
+              <li>
+                <Link to='/cart'>장바구니</Link>
+              </li>
+              <li>
+                <Link to='/orderlist'>주문내역</Link>
+              </li>
+              <li>
+                <button onClick={storeLogout}>로그아웃</button>
+              </li>
+            </ul>
+          )
+        }
+        {
+          !isLoggedIn && (
+            <ul>
+              <li>
+                <Link to="/login">
+                  <FaSignInAlt />로그인
+                </Link>
+              </li>
+              <li>
+                <Link to="/signup">
+                  <FaRegUser />회원가입
+                </Link>
+              </li>
+            </ul>
+          )
+        }
       </nav>
     </HeaderStyled>
   )
@@ -94,13 +116,16 @@ const HeaderStyled = styled.header`
       display: flex;
       gap: 14px;
       li {
-        a {
+        a, button {
           font-size: 1rem;
           font-weight: 600;
           text-decoration: none;
           display: flex;
           align-item: center;
           line-height: 1;
+          background: none;
+          border: none;
+          cursor: pointer;
 
           svg {
             margin-right: 6px;
