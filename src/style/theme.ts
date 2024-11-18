@@ -7,7 +7,7 @@ export type ThemeName = "light" | "dark";
 export type ColorKey = "primary" | "background" | "secondary" | "third" | "border" | "text"; // 컬러가 계속해서 늘어날 수 있기 때문에 
 export type HeadingSize = "large" | "medium" | "small";
 export  type ButtonSize = "large" | "medium" | "small";
-export type ButtonScheme = "primary" | "normal"; // primary 확인, normal 취소
+export type ButtonScheme = "primary" | "normal" | "like";
 export type LayoutWidth = "large" | "medium" | "small";
 
 interface Theme {
@@ -87,6 +87,10 @@ export const light: Theme = {
         normal: {
             color: "black",
             backgroundColor: "lightgray"
+        },
+        like: {
+            color: "white",
+            backgroundColor: "coral"
         }
     },
     borderRadius: {

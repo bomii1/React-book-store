@@ -14,28 +14,31 @@ interface Props {
 const BookItem = ({ book, view }: Props) => {
   return (
     <BookItemStyle view={view}>
-      <Link to='book/${book.id}'>
-        <div className='img'>
-            <img src={getImgSrc(book.img)} alt={book.title} />
-        </div>
-        <div className='content'>
-            <h2 className='title'>{book.title}</h2>
-            <p className='summary'>{book.summary}</p>
-            <p className='author'>{book.author}</p>
-            <p className='price'>{formatNumber(book.price)}원</p>
-            <p className='likes'>
-                <FaHeart />{book.likes}
-            </p>
-        </div>
-      </Link>
+        <Link to={`/book/${book.id}`}>
+            <div className='img'>
+                <img src={getImgSrc(book.img)} alt={book.title} />
+            </div>
+            <div className='content'>
+                <h2 className='title'>{book.title}</h2>
+                <p className='summary'>{book.summary}</p>
+                <p className='author'>{book.author}</p>
+                <p className='price'>{formatNumber(book.price)}원</p>
+                <p className='likes'>
+                    <FaHeart />{book.likes}
+                </p>
+            </div>
+        </Link>
     </BookItemStyle>
   )
 }
 
 const BookItemStyle = styled.div<Pick<Props, 'view'>>`
-    display: flex;
-    flex-direction: ${({ view }) => view === 'grid' ? 'column' : 'row'};
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    a {
+        display: flex;
+        flex-direction: ${({ view }) => view === 'grid' ? 'column' : 'row'};
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
 
     .img {
         border-radius: ${({ theme }) => theme.borderRadius.default};
