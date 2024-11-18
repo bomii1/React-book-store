@@ -1,11 +1,10 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import logo from '../../assets/logo.png'
-import { FaSignInAlt, FaRegUser, FaSignOutAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaRegUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useCategory } from '../../hook/useCategory'
 import { useAuthStore } from '../../store/authStore'
-import { useNavigate } from 'react-router-dom'
 
 
 const Header = () => {
@@ -25,7 +24,7 @@ const Header = () => {
           {
             category.map((item) => 
               <li key={item.category_id}>
-                <Link to={item.category_id === null ? `/books` : `/books?.category_id=${item.category_id}`}>
+                <Link to={item.category_id === null ? `/books` : `/books?category_id=${item.category_id}`}>
                   {item.category_name}
                 </Link>
               </li>
