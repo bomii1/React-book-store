@@ -12,9 +12,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement>{
 
 
 
-const Button = ({children, size, scheme, onClick, disabled, isLoading, className}: Props) => {
+const Button = ({children, size, scheme, onClick, disabled, isLoading, className, ...props}: Props) => {
   return (
-    <ButtonStyle size={size} scheme={scheme} onClick={onClick} disabled={disabled} isLoading={isLoading} className={className}>
+    <ButtonStyle size={size} scheme={scheme} onClick={onClick} disabled={disabled} isLoading={isLoading} className={className} {...props}>
         {children}
     </ButtonStyle>
   )

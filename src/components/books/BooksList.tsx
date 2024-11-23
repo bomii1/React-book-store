@@ -20,7 +20,7 @@ const BooksList = ({ books }: Props) => {
     if (params.get(QUERYSTRING.VIEW)) {
       setView(params.get(QUERYSTRING.VIEW) as ViewMode);
     }
-  })
+  }, [location.search]) // 고침
   return (
     <BooksListStyle view={view}>
       {

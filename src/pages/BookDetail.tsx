@@ -8,6 +8,7 @@ import { formatDate, formatNumber } from "../utils/format";
 import { Link } from "react-router-dom";
 import ElipsisBox from "../components/common/ElipsisBox";
 import LikeButton from "../components/book/LikeButton";
+import AddToCart from "../components/book/AddToCart";
 
 const bookInfoList = [
     {
@@ -48,8 +49,8 @@ const bookInfoList = [
 
 const BookDetail = () => {
 
-  const { bookId } = useParams();
-  const { book } = useBook(bookId);
+  const { bookId } = useParams(); // :bookId 를 가져옴, : 로 정의된 params 가져오는 훅
+  const { book, likeToggle } = useBook(bookId);
 
   // console.log(book);
   // 초기값이 null 인 이유는 book 의 초기값이 null 이기 때문에 제대로 fetch 하기 전에 null 이 먼저 찍힘
@@ -69,7 +70,7 @@ const BookDetail = () => {
             </Title>
             {
                 bookInfoList.map((item) => (
-                    <dl>
+                    <dl key={item.label}>
                         <dt>{item.label}</dt>
                         <dd>
                             {
@@ -84,10 +85,10 @@ const BookDetail = () => {
                 {book.summary}
             </p>
             <div className="like">
-                <LikeButton book={book} onClick={() => {}}/>
+                <LikeButton book={book} onClick={likeToggle}/>
             </div>
             <div className="add-cart">
-                장바구니 넣기
+                <AddToCart book={book}/>
             </div>
         </div>
       </header>

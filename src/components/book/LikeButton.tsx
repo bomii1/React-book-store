@@ -10,7 +10,11 @@ interface Props {
 
 const LikeButton = ({book, onClick}: Props) => {
   return (
-    <LikeButtonStyle size="medium" scheme={book.liked ? 'like' : "normal"}>
+    <LikeButtonStyle 
+        size="medium" 
+        scheme={book.liked ? 'like' : "normal"}
+        onClick={onClick}
+    >
         <FaHeart />
         {book.likes}
     </LikeButtonStyle>
