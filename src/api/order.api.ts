@@ -1,6 +1,5 @@
-import { request } from "http";
 import { Order, OrderDetailItem, OrderSheet } from "../models/order.models";
-import { httpClient, requestHandler } from "./http";
+import { requestHandler } from "./http";
 
 // export const order = async (orderDate: OrderSheet) => {
 //     const response = await httpClient.post('/orders', orderDate);
@@ -29,5 +28,5 @@ export const fetchOrders = async () => {
 // }
 
 export const fetchOrder = async (orderId: number) => {
-    return await requestHandler('get', `/orders/${orderId}`);
+    return await requestHandler<OrderDetailItem[]>('get', `/orders/${orderId}`);
 }
